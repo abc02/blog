@@ -277,6 +277,372 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.abc02.info/2018/08/08/scope-closures/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="黄恩强">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黄恩强blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/08/scope-closures/" itemprop="url">
+                  Untitled
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-08 01:03:38" itemprop="dateCreated datePublished" datetime="2018-08-08T01:03:38+08:00">2018-08-08</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="scope-closures"><a href="#scope-closures" class="headerlink" title="scope-closures"></a>scope-closures</h2><ul>
+<li>作用域-闭包</li>
+</ul>
+<h3 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h3><ul>
+<li><strong>JavaScript</strong>  动态 or 解释执行语言</li>
+<li>编译原理<ul>
+<li>a<ul>
+<li>传统编译语言的流程中 -&gt; 分词/词法分析 -&gt; 解析/语法分析 -&gt; 代码生产 经历三个步骤统称”编译”<ol>
+<li>词法分析 -&gt; 字符串分解成代码块 -&gt; 词法单元</li>
+<li>词法单元流（数组） -&gt; 元素逐级嵌套所组成 -&gt; 抽象语法树（AST）<ul>
+<li>var a = 2;抽象语法树 -&gt; VariableDeclaration顶级节点 -&gt; Identifier子节点 &amp; AssignmentExpression子节点 -&gt; NumericLiteral子节点</li>
+</ul>
+</li>
+<li>AST -&gt; 转换可执行代码</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>b<ol>
+<li>JavaScript引擎 -&gt; 负责整个程序编译及执行过程</li>
+<li>编译器 -&gt; 负责语法分析及代码生产</li>
+<li>作用域 -&gt; 负收集并维护又所有声明的标示符组成的一系列查询，实施一套严格规则，确定当前执行代码对这些标示符的访问权限</li>
+</ol>
+</li>
+<li>c<ul>
+<li>编译器 -&gt; 语法分析 -&gt; 代码生成 -&gt; 引擎执行 -&gt; 作用域协助查询</li>
+<li>LHS查询 <ul>
+<li>试图找到变量的容器本身</li>
+<li>查找的目的是对变量进行赋值</li>
+</ul>
+</li>
+<li>RHS查询<ul>
+<li>retrieve his source value 取到它的源值</li>
+<li>目的是获取变量的值</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>作用域嵌套<ul>
+<li>当前作用域 -&gt; 上一级作用域 -&gt; 全局作用域</li>
+</ul>
+</li>
+<li>异常<ul>
+<li><strong>ReferenceError</strong><ul>
+<li><em>同作用域判别失败相关</em></li>
+<li>RHS查询不到所有嵌套作用域所需变量</li>
+<li>LHS<ul>
+<li>严格模式禁止自动或隐式创建全局变量</li>
+<li>宽松/懒惰模式会全局作用域中创建变量</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>TypeError</strong><ul>
+<li><em>代表作用域判别成功了，但对结果的操作是非法或不合理</em></li>
+<li>RHS<ul>
+<li>对变量的值进行不合理的操作<ul>
+<li>例如对非函数类型的值进行函数调用</li>
+<li>引用null或undefined类型的值中的属性</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="词法作用域"><a href="#词法作用域" class="headerlink" title="词法作用域"></a>词法作用域</h3><ul>
+<li>工作模式<ul>
+<li><strong>词法作用域</strong></li>
+<li>动态作用域</li>
+</ul>
+</li>
+<li>词法阶段<ul>
+<li>词法作用域就是你书写代码时函数声明的位置来决定的</li>
+<li>大部分标准语言编译器第一工作阶段叫做词法化<pre><code>- 词法化的过程对源代码中的字符进行检查
+- 如果有状态的解析过程还会赋予单词语义
+- 该概念是理解词法作用域及其名称来历的基础
+</code></pre></li>
+<li>词法欺骗 <strong>不推荐使用</strong><ul>
+<li>eval</li>
+<li>with</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="函数作用域"><a href="#函数作用域" class="headerlink" title="函数作用域"></a>函数作用域</h3><ul>
+<li></li>
+</ul>
+<h3 id="块作用域"><a href="#块作用域" class="headerlink" title="块作用域"></a>块作用域</h3><h3 id="提升"><a href="#提升" class="headerlink" title="提升"></a>提升</h3><h3 id="作用域闭包"><a href="#作用域闭包" class="headerlink" title="作用域闭包"></a>作用域闭包</h3>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.abc02.info/2018/08/06/this-prototype/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="黄恩强">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黄恩强blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/06/this-prototype/" itemprop="url">
+                  Untitled
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-06 19:56:52" itemprop="dateCreated datePublished" datetime="2018-08-06T19:56:52+08:00">2018-08-06</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="this-prototype"><a href="#this-prototype" class="headerlink" title="this-prototype"></a>this-prototype</h2><ul>
+<li>this-对象原型</li>
+</ul>
+<h3 id="this"><a href="#this" class="headerlink" title="this"></a>this</h3><h3 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h3><h3 id="”类”"><a href="#”类”" class="headerlink" title="”类”"></a>”类”</h3><h3 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h3><h3 id="行为委托"><a href="#行为委托" class="headerlink" title="行为委托"></a>行为委托</h3><h3 id="ES6-Class"><a href="#ES6-Class" class="headerlink" title="ES6 Class"></a>ES6 Class</h3>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://blog.abc02.info/2018/08/05/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -449,7 +815,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-count">3</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
