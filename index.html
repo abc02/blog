@@ -340,7 +340,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-08-22 20:11:34" itemprop="dateModified" datetime="2018-08-22T20:11:34+08:00">2018-08-22</time>
+                <time title="Modified: 2018-08-22 20:18:48" itemprop="dateModified" datetime="2018-08-22T20:18:48+08:00">2018-08-22</time>
               
             
           </span>
@@ -378,21 +378,39 @@
             <h1 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h1><h2 id="传统编译语言"><a href="#传统编译语言" class="headerlink" title="传统编译语言"></a>传统编译语言</h2><h3 id="编译流程三个步骤"><a href="#编译流程三个步骤" class="headerlink" title="编译流程三个步骤"></a>编译流程三个步骤</h3><ul>
 <li>分词/词法分析</li>
 <li>解析/语法分析</li>
-<li>代码生产<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3></li>
+<li>代码生产</li>
+</ul>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><ul>
 <li>字符串分解成有意义的代码块(词法单元)</li>
 <li>词法单元流（数组）转换成一个由元素逐级嵌套所组成的代表程序语法结构的树(抽象语法树 Abstract Syntax Tree, AST)</li>
-<li>AST转换为可执行代码的过程称为代码生产，这个过程与语言、目标平台等息息相关<h3 id="范例var-a-2AST"><a href="#范例var-a-2AST" class="headerlink" title="范例var a = 2AST"></a>范例<code>var a = 2</code>AST</h3></li>
+<li>AST转换为可执行代码的过程称为代码生产，这个过程与语言、目标平台等息息相关</li>
+</ul>
+<h3 id="范例var-a-2AST"><a href="#范例var-a-2AST" class="headerlink" title="范例var a = 2AST"></a>范例<code>var a = 2</code>AST</h3><ul>
 <li>顶级节点VariableDeclaration<ul>
 <li>子节点Identifier  <ul>
 <li>子节点AssignmentExpression</li>
-<li>子节点NumericLiteral<h2 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h2>“动态” 或 “解释执行” 语言</li>
+<li>子节点NumericLiteral</li>
 </ul>
 </li>
 </ul>
 </li>
+</ul>
+<h2 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h2><p> 动态 或 解释执行 语言</p>
+<ul>
 <li>JavaScript引擎</li>
 <li>编译器</li>
-<li>作用域<h3 id="引擎"><a href="#引擎" class="headerlink" title="引擎"></a>引擎</h3>程序编译 执行过程<h3 id="编译器"><a href="#编译器" class="headerlink" title="编译器"></a>编译器</h3>语法分析 代码生产<h3 id="作用域-1"><a href="#作用域-1" class="headerlink" title="作用域"></a>作用域</h3>收集并维护由所有声明的标识符（变量、函数）组成的一系列查询，实施一套非常严格的规则，确定当前的代码对这些标识符的访权限</li>
+<li>作用域</li>
+</ul>
+<h3 id="引擎"><a href="#引擎" class="headerlink" title="引擎"></a>引擎</h3><ul>
+<li>程序编译</li>
+<li>执行过程</li>
+</ul>
+<h3 id="编译器"><a href="#编译器" class="headerlink" title="编译器"></a>编译器</h3><ul>
+<li>语法分析</li>
+<li>代码生产</li>
+</ul>
+<h3 id="作用域-1"><a href="#作用域-1" class="headerlink" title="作用域"></a>作用域</h3><p>收集并维护由所有声明的标识符（变量、函数）组成的一系列查询，实施一套非常严格的规则，确定当前的代码对这些标识符的访权限</p>
+<ul>
 <li>词法作用域</li>
 <li>作用域气泡</li>
 <li>作用域嵌套</li>
@@ -401,26 +419,42 @@
 <li>ReferenceError</li>
 <li>TypeError</li>
 <li>函数作用域</li>
-<li>块作用域<h4 id="词法作用域"><a href="#词法作用域" class="headerlink" title="词法作用域"></a>词法作用域</h4></li>
+<li>块作用域</li>
+</ul>
+<h4 id="词法作用域"><a href="#词法作用域" class="headerlink" title="词法作用域"></a>词法作用域</h4><ul>
 <li>词法作用域就是定义在词法阶段的作用域</li>
 <li>词法欺骗<ul>
 <li>eval</li>
-<li>with<h4 id="作用域气泡"><a href="#作用域气泡" class="headerlink" title="作用域气泡"></a>作用域气泡</h4></li>
+<li>with</li>
 </ul>
 </li>
+</ul>
+<h4 id="作用域气泡"><a href="#作用域气泡" class="headerlink" title="作用域气泡"></a>作用域气泡</h4><ul>
 <li>作用域气泡的结构和互相之间的位置关系给引擎提供来足够的位置信息，引擎用这些信息来查找标识符位置</li>
 <li>作用域查找从运行时所处的最内部作用域开始，逐级向上进行，直到遇见第一个匹配标识符为止</li>
-<li>多层的嵌套作用域中可以定义同名的标识符。叫作 “遮蔽效应”<h4 id="LHS-Left-Hand-Side"><a href="#LHS-Left-Hand-Side" class="headerlink" title="LHS(Left-Hand Side)"></a>LHS(Left-Hand Side)</h4>查找标识符的容器本身<h4 id="RHS-Right-hand-Side"><a href="#RHS-Right-hand-Side" class="headerlink" title="RHS(Right-hand Side)"></a>RHS(Right-hand Side)</h4>获取标识符的源值<h4 id="ReferenceError"><a href="#ReferenceError" class="headerlink" title="ReferenceError"></a>ReferenceError</h4>作用域判别失败</li>
+<li>多层的嵌套作用域中可以定义同名的标识符。叫作 “遮蔽效应”</li>
+</ul>
+<h4 id="LHS-Left-Hand-Side"><a href="#LHS-Left-Hand-Side" class="headerlink" title="LHS(Left-Hand Side)"></a>LHS(Left-Hand Side)</h4><p>查找标识符的容器本身</p>
+<h4 id="RHS-Right-hand-Side"><a href="#RHS-Right-hand-Side" class="headerlink" title="RHS(Right-hand Side)"></a>RHS(Right-hand Side)</h4><p>获取标识符的源值</p>
+<h4 id="ReferenceError"><a href="#ReferenceError" class="headerlink" title="ReferenceError"></a>ReferenceError</h4><p>作用域判别失败</p>
+<ul>
 <li>RHS 所有作用域查询不到所需的标识符</li>
-<li>LHS 严格模式禁止自动或隐式创建全局变量 or 宽松/懒惰模式全在全局作用域中创建标识符<h4 id="TypeError"><a href="#TypeError" class="headerlink" title="TypeError"></a>TypeError</h4>作用域判别成功，但操作是非法或不合理</li>
-<li>RHS 对非函数类型的标识符进行函数调用 or 引用null或undefined类型的值中的属性<h4 id="函数作用域"><a href="#函数作用域" class="headerlink" title="函数作用域"></a>函数作用域</h4></li>
+<li>LHS 严格模式禁止自动或隐式创建全局变量 or 宽松/懒惰模式全在全局作用域中创建标识符</li>
+</ul>
+<h4 id="TypeError"><a href="#TypeError" class="headerlink" title="TypeError"></a>TypeError</h4><p>作用域判别成功，但操作是非法或不合理</p>
+<ul>
+<li>RHS 对非函数类型的标识符进行函数调用 or 引用null或undefined类型的值中的属性</li>
+</ul>
+<h4 id="函数作用域"><a href="#函数作用域" class="headerlink" title="函数作用域"></a>函数作用域</h4><ul>
 <li>隐藏内部实现<ul>
 <li>最小特权原则中引出/最小授权/最小暴露原则</li>
 <li>避免同名标识符之间的冲突</li>
 </ul>
 </li>
 <li>全局命名空间</li>
-<li>模块管理<h5 id="函数声明"><a href="#函数声明" class="headerlink" title="函数声明"></a>函数声明</h5><h5 id="函数表达式"><a href="#函数表达式" class="headerlink" title="函数表达式"></a>函数表达式</h5></li>
+<li>模块管理</li>
+</ul>
+<h5 id="函数声明"><a href="#函数声明" class="headerlink" title="函数声明"></a>函数声明</h5><h5 id="函数表达式"><a href="#函数表达式" class="headerlink" title="函数表达式"></a>函数表达式</h5><ul>
 <li>匿名函数表达式<ul>
 <li>在栈追踪中不会显示有意义的函数名</li>
 <li>无法引用自身</li>
@@ -431,24 +465,26 @@
 <li>有效解决以上问题</li>
 </ul>
 </li>
-<li>立即执行函数表达式（IIFE）<h6 id="范例"><a href="#范例" class="headerlink" title="范例"></a>范例</h6><ul>
-<li><code>(function foo() {})()</code></li>
-<li><code>(function foo() {}())</code><h4 id="块作用域"><a href="#块作用域" class="headerlink" title="块作用域"></a>块作用域</h4></li>
+<li>立即执行函数表达式（IIFE）</li>
 </ul>
-</li>
+<h6 id="范例"><a href="#范例" class="headerlink" title="范例"></a>范例</h6><ul>
+<li><code>(function foo() {})()</code></li>
+<li><code>(function foo() {}())</code></li>
+</ul>
+<h4 id="块作用域"><a href="#块作用域" class="headerlink" title="块作用域"></a>块作用域</h4><ul>
 <li>with</li>
 <li>try/catch catch分句会创建一个块作用域</li>
-<li><p>let关键字可以将变量绑定到所在的任意作用域中（通常是 <code>{...}</code>内部）</p>
-<h6 id="范例-1"><a href="#范例-1" class="headerlink" title="范例"></a>范例</h6><p>  let为其声明的标识符隐式地劫持了所在的块作用域</p>
-   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var foo = true</span><br><span class="line">if (foo) &#123;</span><br><span class="line">    &#123; // &lt;- 显式的块作用域</span><br><span class="line">        let bar = 2</span><br><span class="line">        console.log(bar)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>cosnt常量</p>
-<h4 id="提升"><a href="#提升" class="headerlink" title="提升"></a>提升</h4></li>
+<li>let关键字可以将变量绑定到所在的任意作用域中（通常是 <code>{...}</code>内部）</li>
+<li>cosnt常量</li>
+</ul>
+<h6 id="范例-1"><a href="#范例-1" class="headerlink" title="范例"></a>范例</h6><p>let为其声明的标识符隐式地劫持了所在的块作用域<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var foo = true</span><br><span class="line">if (foo) &#123;</span><br><span class="line">    &#123; // &lt;- 显式的块作用域</span><br><span class="line">        let bar = 2</span><br><span class="line">        console.log(bar)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="提升"><a href="#提升" class="headerlink" title="提升"></a>提升</h4><ul>
 <li>函数优先</li>
 <li>函数声明会被提升</li>
 <li>函数表达式不会被提升</li>
-<li>变量提升<h4 id="范例-2"><a href="#范例-2" class="headerlink" title="范例"></a>范例</h4>编译器将程序语法分析分解成词法单元，然后将词法单元解析成一个树结构。但是当编译器开始进行代码生成时，它对程序处理方式会和预期的有所不同。编译器在编译过程生成了代码，引擎执行它时，会通过查找标示符来判断它是否已声明过。查找的过程由作用域进行协助</li>
+<li>变量提升</li>
 </ul>
+<h4 id="范例-2"><a href="#范例-2" class="headerlink" title="范例"></a>范例</h4><p>编译器将程序语法分析分解成词法单元，然后将词法单元解析成一个树结构。但是当编译器开始进行代码生成时，它对程序处理方式会和预期的有所不同。编译器在编译过程生成了代码，引擎执行它时，会通过查找标示符来判断它是否已声明过。查找的过程由作用域进行协助</p>
 <h1 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h1><p>JavaScript中闭包无处不在，你只需要能够识别并拥抱它</p>
 <h2 id="理解和识别闭包"><a href="#理解和识别闭包" class="headerlink" title="理解和识别闭包"></a>理解和识别闭包</h2><p>当函数可以记住访问所在的词法作用域时，就产生了闭包，即使函数是在当前词法作用域之外执行</p>
 <h3 id="基于词法作用域的查找规则"><a href="#基于词法作用域的查找规则" class="headerlink" title="基于词法作用域的查找规则"></a>基于词法作用域的查找规则</h3><p>函数 bar 具有一个涵盖 foo 作用域的闭包。因为 bar 嵌套在 foo 内部<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function foo () &#123;</span><br><span class="line">    var a = 2</span><br><span class="line">    function bar () &#123;</span><br><span class="line">        console.log(a) // 2</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo()</span><br></pre></td></tr></table></figure></p>
@@ -612,6 +648,22 @@
               <time title="Created: 2018-08-08 12:42:13" itemprop="dateCreated datePublished" datetime="2018-08-08T12:42:13+08:00">2018-08-08</time>
             
 
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-08-13 19:03:26" itemprop="dateModified" datetime="2018-08-13T19:03:26+08:00">2018-08-13</time>
+              
             
           </span>
 
