@@ -108,20 +108,24 @@
 
 
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="黄恩强blog">
-<meta property="og:url" content="https://blog.abc02.info/index.html">
+  <meta name="description" content="作用域传统编译语言编译流程三个步骤 分词/词法分析 解析/语法分析 代码生产原理 字符串分解成有意义的代码块(词法单元) 词法单元流（数组）转换成一个由元素逐级嵌套所组成的代表程序语法结构的树(抽象语法树 Abstract Syntax Tree, AST) AST转换为可执行代码的过程称为代码生产，这个过程与语言、目标平台等息息相关范例var a = 2AST 顶级节点VariableDecla">
+<meta property="og:type" content="article">
+<meta property="og:title" content="作用域">
+<meta property="og:url" content="https://blog.abc02.info/2018/08/10/scope-closures/index.html">
 <meta property="og:site_name" content="黄恩强blog">
+<meta property="og:description" content="作用域传统编译语言编译流程三个步骤 分词/词法分析 解析/语法分析 代码生产原理 字符串分解成有意义的代码块(词法单元) 词法单元流（数组）转换成一个由元素逐级嵌套所组成的代表程序语法结构的树(抽象语法树 Abstract Syntax Tree, AST) AST转换为可执行代码的过程称为代码生产，这个过程与语言、目标平台等息息相关范例var a = 2AST 顶级节点VariableDecla">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-08-22T12:11:34.742Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="黄恩强blog">
+<meta name="twitter:title" content="作用域">
+<meta name="twitter:description" content="作用域传统编译语言编译流程三个步骤 分词/词法分析 解析/语法分析 代码生产原理 字符串分解成有意义的代码块(词法单元) 词法单元流（数组）转换成一个由元素逐级嵌套所组成的代表程序语法结构的树(抽象语法树 Abstract Syntax Tree, AST) AST转换为可执行代码的过程称为代码生产，这个过程与语言、目标平台等息息相关范例var a = 2AST 顶级节点VariableDecla">
 
 
 
 
 
 
-  <link rel="canonical" href="https://blog.abc02.info/"/>
+  <link rel="canonical" href="https://blog.abc02.info/2018/08/10/scope-closures/"/>
 
 
 
@@ -131,7 +135,7 @@
   };
 </script>
 
-  <title>黄恩强blog</title>
+  <title>作用域 | 黄恩强blog</title>
   
 
 
@@ -178,8 +182,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -216,7 +219,7 @@
         
         
           
-          <li class="menu-item menu-item-home menu-item-active">
+          <li class="menu-item menu-item-home">
     <a href="/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
   </li>
@@ -260,9 +263,9 @@
           
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -294,11 +297,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/10/scope-closures/" itemprop="url">
-                  作用域
-                </a>
+          <h1 class="post-title" itemprop="name headline">作用域
               
             
           </h1>
@@ -373,9 +372,7 @@
       
 
       
-        
-          
-            <h1 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h1><h2 id="传统编译语言"><a href="#传统编译语言" class="headerlink" title="传统编译语言"></a>传统编译语言</h2><h3 id="编译流程三个步骤"><a href="#编译流程三个步骤" class="headerlink" title="编译流程三个步骤"></a>编译流程三个步骤</h3><ul>
+        <h1 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h1><h2 id="传统编译语言"><a href="#传统编译语言" class="headerlink" title="传统编译语言"></a>传统编译语言</h2><h3 id="编译流程三个步骤"><a href="#编译流程三个步骤" class="headerlink" title="编译流程三个步骤"></a>编译流程三个步骤</h3><ul>
 <li>分词/词法分析</li>
 <li>解析/语法分析</li>
 <li>代码生产<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3></li>
@@ -511,8 +508,6 @@
 <li>ESMAScript2015 =&gt; ES6 称为 编译时夹在 或 静态加载</li>
 </ul>
 
-          
-        
       
     </div>
 
@@ -532,147 +527,28 @@
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.abc02.info/2018/08/08/this-prototype/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="黄恩强">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黄恩强blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/08/this-prototype/" itemprop="url">
-                  this-prototype
-                </a>
-              
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
+              <a href="/2018/08/08/this-prototype/" rel="next" title="this-prototype">
+                <i class="fa fa-chevron-left"></i> this-prototype
+              </a>
             
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-08-08 12:42:13" itemprop="dateCreated datePublished" datetime="2018-08-08T12:42:13+08:00">2018-08-08</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <h2 id="this"><a href="#this" class="headerlink" title="this"></a>this</h2><h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><h2 id="”类”"><a href="#”类”" class="headerlink" title="”类”"></a>”类”</h2><h2 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h2><h2 id="行为委托"><a href="#行为委托" class="headerlink" title="行为委托"></a>行为委托</h2><h2 id="ES6-Class"><a href="#ES6-Class" class="headerlink" title="ES6 Class"></a>ES6 Class</h2>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -682,158 +558,15 @@
   </article>
 
 
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.abc02.info/2018/08/05/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="黄恩强">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黄恩强blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/05/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-08-05 14:46:31" itemprop="dateCreated datePublished" datetime="2018-08-05T14:46:31+08:00">2018-08-05</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -854,8 +587,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -900,6 +642,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#作用域"><span class="nav-number">1.</span> <span class="nav-text">作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#传统编译语言"><span class="nav-number">1.1.</span> <span class="nav-text">传统编译语言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#编译流程三个步骤"><span class="nav-number">1.1.1.</span> <span class="nav-text">编译流程三个步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原理"><span class="nav-number">1.1.2.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#范例var-a-2AST"><span class="nav-number">1.1.3.</span> <span class="nav-text">范例var a = 2AST</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript"><span class="nav-number">1.2.</span> <span class="nav-text">JavaScript</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#引擎"><span class="nav-number">1.2.1.</span> <span class="nav-text">引擎</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编译器"><span class="nav-number">1.2.2.</span> <span class="nav-text">编译器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作用域-1"><span class="nav-number">1.2.3.</span> <span class="nav-text">作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#词法作用域"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">词法作用域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#作用域气泡"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">作用域气泡</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LHS-Left-Hand-Side"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">LHS(Left-Hand Side)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RHS-Right-hand-Side"><span class="nav-number">1.2.3.4.</span> <span class="nav-text">RHS(Right-hand Side)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ReferenceError"><span class="nav-number">1.2.3.5.</span> <span class="nav-text">ReferenceError</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TypeError"><span class="nav-number">1.2.3.6.</span> <span class="nav-text">TypeError</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数作用域"><span class="nav-number">1.2.3.7.</span> <span class="nav-text">函数作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#函数声明"><span class="nav-number">1.2.3.7.1.</span> <span class="nav-text">函数声明</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#函数表达式"><span class="nav-number">1.2.3.7.2.</span> <span class="nav-text">函数表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#范例"><span class="nav-number">1.2.3.7.2.1.</span> <span class="nav-text">范例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#块作用域"><span class="nav-number">1.2.3.8.</span> <span class="nav-text">块作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#范例-1"><span class="nav-number">1.2.3.8.0.1.</span> <span class="nav-text">范例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#提升"><span class="nav-number">1.2.3.9.</span> <span class="nav-text">提升</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#范例-2"><span class="nav-number">1.2.3.10.</span> <span class="nav-text">范例</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#闭包"><span class="nav-number">2.</span> <span class="nav-text">闭包</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#理解和识别闭包"><span class="nav-number">2.1.</span> <span class="nav-text">理解和识别闭包</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基于词法作用域的查找规则"><span class="nav-number">2.1.1.</span> <span class="nav-text">基于词法作用域的查找规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#闭包-1"><span class="nav-number">2.1.2.</span> <span class="nav-text">闭包</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#内存回收"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">内存回收</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#闭包的应用"><span class="nav-number">2.1.2.2.</span> <span class="nav-text">闭包的应用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模块"><span class="nav-number">2.1.2.3.</span> <span class="nav-text">模块</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#词法作用域查找规则"><span class="nav-number">2.1.2.3.1.</span> <span class="nav-text">词法作用域查找规则</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#最常见的实现模块的方式通常称为模块暴露"><span class="nav-number">2.1.2.3.2.</span> <span class="nav-text">最常见的实现模块的方式通常称为模块暴露</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#模块函数-gt-IIFE"><span class="nav-number">2.1.2.3.3.</span> <span class="nav-text">模块函数 =&gt; IIFE</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#现代的模块机制"><span class="nav-number">2.1.2.4.</span> <span class="nav-text">现代的模块机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模块历史演变"><span class="nav-number">2.1.2.5.</span> <span class="nav-text">模块历史演变</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1030,6 +788,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
 
   
 
