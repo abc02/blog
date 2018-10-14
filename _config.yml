@@ -8,12 +8,14 @@ subtitle:
 description:
 keywords:
 author: 黄恩强
-language: CN
+language:
+- en
+- zh-tw
 timezone: 
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://blog.abc02.info
+url: https://blog.huangenqiang.com
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
